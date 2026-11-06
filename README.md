@@ -2,7 +2,7 @@
 
 台股崩了先別慌，來算算下輩子。閻羅王先問 5 題、算出這輩子的功德，再轉輪迴轉盤決定你下輩子投胎成什麼。
 
-- 網址：https://bruce-hsieh.github.io/next-life/
+- 網址：https://bruce-hsieh.github.io/Next-life/
 - 純屬娛樂。Copyright © 2026 大樹
 
 ## 玩法規則
