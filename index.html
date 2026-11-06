@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="投胎轉轉">
+<meta name="theme-color" content="#2b2550">
+<title>投胎轉轉｜韭菜輪迴版</title>
+<link rel="apple-touch-icon" href="v1-apple-touch-icon.png">
+<link rel="icon" href="v1-apple-touch-icon.png">
+<link rel="apple-touch-startup-image" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/v1-1320x2868.png">
+<link rel="apple-touch-startup-image" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/v1-1206x2622.png">
+<link rel="apple-touch-startup-image" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/v1-1290x2796.png">
+<link rel="apple-touch-startup-image" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/v1-1179x2556.png">
+<link rel="apple-touch-startup-image" media="(device-width: 420px) and (device-height: 912px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/v1-1260x2736.png">
+<link rel="apple-touch-startup-image" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/v1-1284x2778.png">
+<link rel="apple-touch-startup-image" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/v1-1170x2532.png">
+<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/v1-1125x2436.png">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/v1-1242x2688.png">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splash/v1-828x1792.png">
+<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splash/v1-750x1334.png">
+<link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splash/v1-640x1136.png">
+<style>
+:root{--ink:#2b2550;--bg:#2b2550;--card:#f4efff;--mint:#9ee6cf;--pink:#ffb3c7;--gold:#ffd166;--lav:#c9b8ff;color-scheme:light}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif;color:var(--ink)}
+body{min-height:100vh;padding:calc(env(safe-area-inset-top) + 12px) 16px calc(env(safe-area-inset-bottom) + 16px);overflow-x:hidden}
+body.lock{overflow:hidden}
+.stars{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.stars circle{animation:tw 3s ease-in-out infinite}
+@keyframes tw{50%{opacity:.2}}
+.app{position:relative;z-index:1;max-width:420px;margin:0 auto}
+header{position:relative;text-align:center;color:#fff;margin:6px 0 12px}
+h1{margin:0;font-size:30px;letter-spacing:3px;white-space:nowrap;text-shadow:0 3px 0 #171332}
+.ver{display:inline-block;margin-top:6px;font-size:13px;font-weight:800;color:var(--ink);background:var(--mint);border:2.5px solid #fff;border-radius:12px;padding:2px 10px;transform:rotate(-3deg);white-space:nowrap}
+.sub{font-size:13px;opacity:.85;margin-top:4px;white-space:nowrap}
+.snd{position:absolute;right:0;top:4px;width:40px;height:40px;border-radius:50%;border:3px solid #fff;background:transparent;padding:4px;cursor:pointer}
+.card{background:var(--card);border:3px solid var(--ink);border-radius:24px;padding:16px;box-shadow:0 6px 0 #171332;margin-bottom:16px}
+.screen{display:none}.screen.on{display:block;animation:pop .35s ease}
+@keyframes pop{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.king{display:block;margin:0 auto;width:170px;height:170px;animation:bob 3s ease-in-out infinite;cursor:pointer}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.king.poke{animation:poke .4s ease}
+@keyframes poke{30%{transform:scale(1.08,.92)}60%{transform:scale(.95,1.06)}}
+.bubble{position:relative;background:#fff;border:3px solid var(--ink);border-radius:18px;padding:10px 14px;font-size:15px;line-height:1.55;margin:10px 0 14px;text-align:center}
+.bubble:before{content:"";position:absolute;top:-12px;left:50%;margin-left:-10px;border:10px solid transparent;border-top:0;border-bottom:12px solid var(--ink)}
+.bubble:after{content:"";position:absolute;top:-7px;left:50%;margin-left:-7px;border:7px solid transparent;border-top:0;border-bottom:8px solid #fff}
+.btn{display:block;width:100%;border:3px solid var(--ink);border-radius:18px;padding:14px;font-size:18px;font-weight:800;background:var(--mint);color:var(--ink);box-shadow:0 5px 0 var(--ink);font-family:inherit;cursor:pointer;margin-top:10px}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--ink)}
+.btn.pink{background:var(--pink)}.btn.gold{background:var(--gold)}.btn.ghost{background:#fff;font-size:15px;padding:10px}
+.btn:disabled{opacity:.6}
+.meter .lab{display:flex;justify-content:space-between;font-size:14px;font-weight:800}
+.bar{height:20px;border:3px solid var(--ink);border-radius:12px;background:#fff;overflow:hidden;margin-top:4px}
+.bar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#ff9fb2,var(--lav),var(--mint),var(--gold));transform-origin:left;transform:scaleX(.5);transition:transform .5s cubic-bezier(.3,1.4,.5,1)}
+.verdict{font-size:12px;text-align:right;margin-top:3px;opacity:.75}
+.dots{display:flex;gap:6px;justify-content:center;margin-bottom:10px}
+.dots b{width:10px;height:10px;border-radius:50%;border:2px solid var(--ink);background:#fff}
+.dots b.on{background:var(--ink)}
+.q{font-size:18px;font-weight:800;line-height:1.5;margin:4px 0 6px;text-align:center}
+.opt{display:block;width:100%;text-align:left;background:#fff;border:3px solid var(--ink);border-radius:16px;padding:12px 14px;font-size:16px;font-family:inherit;color:var(--ink);margin-top:10px;box-shadow:0 4px 0 var(--ink);cursor:pointer}
+.opt:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+.float{position:fixed;left:50%;top:45%;font-size:26px;font-weight:900;pointer-events:none;z-index:50;transform:translate(-50%,0);animation:up 1s ease forwards;text-shadow:0 2px 0 #fff}
+@keyframes up{to{opacity:0;transform:translate(-50%,-70px)}}
+.wheelBox{position:relative;width:300px;height:300px;margin:8px auto 4px}
+.wheel{width:300px;height:300px;will-change:transform}
+.pin{position:absolute;left:50%;top:-14px;width:36px;height:44px;margin-left:-18px;z-index:2}
+.odds{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+.odds div{display:flex;align-items:center;gap:6px;background:#fff;border:2px solid var(--ink);border-radius:12px;padding:4px 8px;font-size:13px;font-weight:700}
+.odds svg{width:24px;height:24px;flex:none}
+.odds span{margin-left:auto;font-variant-numeric:tabular-nums}
+.mask{position:fixed;inset:0;background:rgba(23,19,50,.6);display:none;align-items:center;justify-content:center;z-index:40;padding:20px}
+.mask.on{display:flex}
+.modal{position:relative;background:var(--card);border:3px solid var(--ink);border-radius:26px;width:100%;max-width:360px;max-height:70vh;overflow:auto;padding:22px 18px 18px;text-align:center;box-shadow:0 6px 0 #171332;animation:boing .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes boing{from{transform:scale(.5);opacity:0}}
+.x{position:absolute;right:10px;top:10px;width:34px;height:34px;border-radius:50%;border:3px solid var(--ink);background:#fff;padding:5px;cursor:pointer}
+.rIcon{width:130px;height:130px;margin:0 auto;display:block}
+.rTag{display:inline-block;font-size:12px;font-weight:800;border:2px solid var(--ink);border-radius:10px;padding:2px 8px;background:#fff;margin-top:6px}
+.rName{font-size:24px;font-weight:900;margin:6px 0;white-space:nowrap}
+.rDesc{font-size:15px;line-height:1.6;margin:0 0 4px}
+.spark{position:absolute;width:14px;height:14px;pointer-events:none;animation:sp 1.2s ease-out forwards}
+@keyframes sp{to{transform:translate(var(--dx),var(--dy)) rotate(200deg);opacity:0}}
+/* 開機畫面 */
+#bootBg{position:fixed;inset:0;background:#f4efff;z-index:99;transition:opacity .5s}
+#boot{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+#boot .bk{width:150px;height:150px;opacity:0}
+#boot .bt{font-size:36px;font-weight:900;letter-spacing:4px;margin-top:10px;opacity:0;white-space:nowrap}
+#boot .bs{font-size:14px;font-weight:800;background:var(--mint);border:2.5px solid var(--ink);border-radius:12px;padding:2px 10px;margin-top:8px;opacity:0;white-space:nowrap}
+#boot .bd{display:flex;gap:8px;margin-top:22px;opacity:0}
+#boot .bd i{width:10px;height:10px;border-radius:50%;background:var(--lav);border:2px solid var(--ink);animation:blink 1s ease-in-out infinite}
+#boot .bd i:nth-child(2){animation-delay:.2s}#boot .bd i:nth-child(3){animation-delay:.4s}
+@keyframes blink{50%{opacity:.3}}
+#boot.go .bk{animation:drop .8s cubic-bezier(.3,1.5,.5,1) forwards}
+#boot.go .bt{animation:fin .5s .45s ease forwards}
+#boot.go .bs{animation:fin .5s .65s ease forwards}
+#boot.go .bd{animation:fin .4s 1s ease forwards}
+@keyframes drop{from{opacity:0;transform:translateY(-70px) scale(.6)}to{opacity:1;transform:none}}
+@keyframes fin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+#boot.out .bt,#boot.out .bs,#boot.out .bd{animation:none;opacity:0}
+.app>*{transition:opacity .5s}
+.app>header{transition-delay:.1s}.app>section{transition-delay:.25s}.app>footer{transition-delay:.4s}
+body.booting .app>*{opacity:0}
+/* 更新說明 */
+.modal.cl{height:60vh;display:flex;flex-direction:column;text-align:left}
+.modal.cl h3{margin:0 0 10px;font-size:20px;text-align:center}
+#clBody{flex:1;overflow:auto;font-size:15px;line-height:1.6}
+#clBody b{display:block;margin-top:6px}
+#clBody ul{margin:4px 0 10px;padding-left:20px}
+footer{text-align:center;color:#fff;opacity:.7;font-size:12px;line-height:1.7;margin-top:6px}
+</style>
+</head>
+<body class="booting">
+<div id="bootBg"></div>
+<div id="boot"><svg class="bk" id="bootKing" viewBox="0 0 120 120"></svg><div class="bt">投胎轉轉</div><div class="bs">韭菜輪迴版</div><div class="bd"><i></i><i></i><i></i></div></div>
+<svg class="stars" id="stars" aria-hidden="true"></svg>
+<div class="app">
+  <header>
+    <h1>投胎轉轉</h1>
+    <div class="ver">韭菜輪迴版</div>
+    <div class="sub">台股崩了先別慌，來算算下輩子</div>
+    <button class="snd" id="snd" aria-label="音效"></button>
+  </header>
+
+  <!-- 首頁 -->
+  <section class="screen on" id="sHome">
+    <div class="card">
+      <svg class="king" id="king" viewBox="0 0 120 120" style="visibility:hidden"></svg>
+      <div class="bubble" id="kingSay">本王看你今天盯盤盯到臉都綠了。<br>來，先算算這輩子的功德，<br>再決定你下輩子投胎去哪！</div>
+      <div class="meter"><div class="lab"><span>功德值</span><span id="mNum0">50</span></div><div class="bar"><i id="mBar0"></i></div></div>
+      <button class="btn" id="goJudge">開始審判</button>
+      <button class="btn ghost" id="goSkip">不審了，直接轉</button>
+    </div>
+  </section>
+
+  <!-- 審判（問答） -->
+  <section class="screen" id="sQuiz">
+    <div class="card">
+      <div class="dots" id="dots"></div>
+      <div class="q" id="qText"></div>
+      <div id="qOpts"></div>
+      <div class="meter" style="margin-top:14px"><div class="lab"><span>功德值</span><span id="mNum1">50</span></div><div class="bar"><i id="mBar1"></i></div></div>
+    </div>
+  </section>
+
+  <!-- 輪迴轉盤 -->
+  <section class="screen" id="sWheel">
+    <div class="card">
+      <div class="meter"><div class="lab"><span>你的功德值</span><span id="mNum2">50</span></div><div class="bar"><i id="mBar2"></i></div><div class="verdict" id="verdict"></div></div>
+      <div class="wheelBox">
+        <svg class="pin" viewBox="0 0 36 44"><path d="M18 42 L4 14 A14 14 0 1 1 32 14 Z" fill="#ff7a9a" stroke="#2b2550" stroke-width="3" stroke-linejoin="round"/><circle cx="18" cy="14" r="5" fill="#fff"/></svg>
+        <svg class="wheel" id="wheel" viewBox="0 0 300 300"></svg>
+      </div>
+      <button class="btn pink" id="spin">喝下孟婆湯・轉！</button>
+      <div class="odds" id="odds"></div>
+      <button class="btn ghost" id="again">重新審判</button>
+    </div>
+  </section>
+
+  <footer>純屬娛樂｜股票跌了會再漲，人生只有一次，好好吃飯<br>Copyright © 2026 大樹</footer>
+</div>
+
+<!-- 結果視窗 -->
+<div class="mask" id="mask">
+  <div class="modal" id="modal">
+    <button class="x" id="close" aria-label="關閉"><svg viewBox="0 0 20 20"><path d="M4 4L16 16M16 4L4 16" stroke="#2b2550" stroke-width="3.5" stroke-linecap="round"/></svg></button>
+    <div class="rTag">閻羅王判決</div>
+    <svg class="rIcon" id="rIcon" viewBox="0 0 100 100"></svg>
+    <div class="rName" id="rName"></div>
+    <p class="rDesc" id="rDesc"></p>
+    <button class="btn gold" id="rAgain">再投一次胎</button>
+  </div>
+</div>
+
+<!-- 更新說明視窗 -->
+<div class="mask" id="clMask">
+  <div class="modal cl">
+    <button class="x" id="clX" aria-label="關閉"><svg viewBox="0 0 20 20"><path d="M4 4L16 16M16 4L4 16" stroke="#2b2550" stroke-width="3.5" stroke-linecap="round"/></svg></button>
+    <h3>更新說明</h3>
+    <div id="clBody"></div>
+    <button class="btn" id="clOk">知道了</button>
+  </div>
+</div>
+
+<script>
+// ===== 版本（開機就會用到，先宣告） =====
+const APP_VERSION = '1.0.0';
+const CHANGELOG = [
+  {v:'1.0.0', d:'2026-11-06', items:['投胎轉轉（韭菜輪迴版）正式上線！','閻羅王審判 5 題，算出這輩子的功德','輪迴轉盤 6 種下輩子，功德越高越容易含金湯匙','閻羅王可以戳，會換台詞']}
+];
+let pendingUpdate = null, booted = false;
+// ===== 狀態（開機就會用到，先宣告） =====
+let merit = 50, qi = 0, rot = 0, spinning = false, soundOn = true, AC = null;
+try { soundOn = localStorage.getItem('tt_snd') !== '0'; } catch (e) {}
+
+const $ = id => document.getElementById(id);
+const INK = '#2b2550';
+
+// ===== 下輩子結果（c = 功德中心值，越接近越容易抽到） =====
+const OUT = [
+  {k:'spoon', s:'金湯匙', name:'含金湯匙的富二代', c:92, col:'#ffd166', desc:'一出生就有信託基金，台股跌到幾點都跟你無關。記得多做公益，下下輩子才保得住。'},
+  {k:'corgi', s:'柯基', name:'好人家的柯基', c:72, col:'#ffbf8f', desc:'住大坪數、吃鮮食，每天有人幫你拍照上 IG。狗生勝利組。'},
+  {k:'eng', s:'工程師',   name:'竹科工程師', c:54, col:'#9ec9ff', desc:'穩定領薪水、年底有分紅，偶爾加班到半夜。午休還是會偷看盤。'},
+  {k:'cat', s:'流浪貓',   name:'巷口流浪貓', c:36, col:'#c9b8ff', desc:'自由自在，靠可愛討罐罐。沒有股票，也就不會被斷頭。'},
+  {k:'ant', s:'小螞蟻',   name:'勤勞的小螞蟻', c:18, col:'#ffb3c7', desc:'一輩子搬糖搬到腰痠。但團結就是力量，努力存功德吧！'},
+  {k:'leek', s:'韭菜',  name:'一把韭菜', c:2, col:'#9ee6cf', desc:'長出來、被割、再長出來……這輩子的輪迴，下輩子繼續。'}
+];
+
+// ===== 審判題目（d = 功德加減） =====
+const QS = [
+  {q:'今天台股大跌，你的反應是？', a:[['照紀律停損，明天再戰',10],['攤平！再攤平！',-5],['在群組報明牌拉朋友一起上車',-15]]},
+  {q:'捷運上看到阿公阿嬤站著？', a:[['馬上讓座',15],['低頭滑看盤 App',-5],['閉眼裝睡',-10]]},
+  {q:'爸媽打電話來問你吃飽沒？', a:[['好好聊十分鐘',15],['「在忙，晚點回」然後忘記',-5],['順便問能不能借錢補保證金',-10]]},
+  {q:'路上撿到一千塊？', a:[['送去派出所',15],['請同事喝飲料',5],['馬上拿去買零股',-10]]},
+  {q:'同事問你某檔股票能不能買？', a:[['分享研究，提醒自己判斷',10],['「我又不是投顧」',0],['「衝就對了！」',-15]]}
+];
+
+// ===== 機率：功德越接近某結果的中心值，權重越高 =====
+function weights(m){
+  const w = OUT.map(o => Math.exp(-Math.pow((m - o.c) / 22, 2)) + 0.03);
+  const s = w.reduce((a,b)=>a+b,0);
+  return w.map(x => x / s);
+}
+function verdictText(m){
+  return m>=80?'功德無量，本王都想跟你換':m>=60?'積善之家，不錯不錯':m>=40?'普通人一個，平平安安':m>=20?'功德有點欠費喔':'功德已被斷頭';
+}
+
+// ===== 自畫 SVG 圖示 =====
+const face = (cx,cy,s=1) => `
+  <circle cx="${cx-9*s}" cy="${cy}" r="${3.2*s}" fill="${INK}"/><circle cx="${cx+9*s}" cy="${cy}" r="${3.2*s}" fill="${INK}"/>
+  <circle cx="${cx-8*s}" cy="${cy-1*s}" r="${1*s}" fill="#fff"/><circle cx="${cx+10*s}" cy="${cy-1*s}" r="${1*s}" fill="#fff"/>
+  <ellipse cx="${cx-15*s}" cy="${cy+6*s}" rx="${4*s}" ry="${2.5*s}" fill="#ff8fa8" opacity=".7"/><ellipse cx="${cx+15*s}" cy="${cy+6*s}" rx="${4*s}" ry="${2.5*s}" fill="#ff8fa8" opacity=".7"/>`;
+const ST = `stroke="${INK}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"`;
+const ICON = {
+  spoon: () => `
+    <path d="M38 22 L42 12 L50 19 L58 12 L62 22 Z" fill="#ffd166" ${ST}/>
+    <circle cx="50" cy="52" r="28" fill="#ffe0c7" ${ST}/>
+    <path d="M44 25 q6 -6 10 2" fill="none" ${ST}/>
+    ${face(50,50)}
+    <path d="M60 66 L84 84" stroke="${INK}" stroke-width="8" stroke-linecap="round"/><path d="M60 66 L84 84" stroke="#ffd166" stroke-width="3.5" stroke-linecap="round"/>
+    <ellipse cx="54" cy="62" rx="8" ry="6" transform="rotate(38 54 62)" fill="#ffd166" ${ST}/>`,
+  corgi: () => `
+    <path d="M22 44 L26 12 L44 32 Z" fill="#ffa25f" ${ST}/><path d="M78 44 L74 12 L56 32 Z" fill="#ffa25f" ${ST}/>
+    <path d="M28 24 L31 32 L37 30Z" fill="#ffd2b0"/><path d="M72 24 L69 32 L63 30Z" fill="#ffd2b0"/>
+    <ellipse cx="50" cy="54" rx="30" ry="27" fill="#ffa25f" ${ST}/>
+    <path d="M50 34 C42 46 34 58 36 70 Q50 80 64 70 C66 58 58 46 50 34Z" fill="#fff"/>
+    ${face(50,52)}
+    <ellipse cx="50" cy="62" rx="4" ry="3" fill="${INK}"/><path d="M45 67 q5 4 10 0" fill="none" ${ST}/>
+    <path d="M40 84 L50 80 L60 84 L60 76 L50 80 L40 76 Z" fill="#ff7a9a" ${ST}/>`,
+  eng: () => `
+    <path d="M24 86 Q50 70 76 86" fill="#9ec9ff" ${ST}/>
+    <circle cx="50" cy="46" r="26" fill="#ffe0c7" ${ST}/>
+    <path d="M24 44 Q26 18 50 18 Q74 18 76 44 Q66 30 50 32 Q36 30 24 44Z" fill="${INK}"/>
+    <circle cx="40" cy="48" r="8" fill="#fff" ${ST}/><circle cx="60" cy="48" r="8" fill="#fff" ${ST}/><path d="M48 48 H52" ${ST}/>
+    <circle cx="40" cy="48" r="2.6" fill="${INK}"/><circle cx="60" cy="48" r="2.6" fill="${INK}"/>
+    <path d="M44 61 q6 4 12 0" fill="none" ${ST}/>
+    <path d="M40 74 L50 84 L60 74" fill="none" stroke="#ff7a9a" stroke-width="3"/>
+    <rect x="44" y="82" width="12" height="14" rx="2" fill="#fff" ${ST}/>`,
+  cat: () => `
+    <path d="M22 46 L24 14 L44 30 Z" fill="#bdb3d6" ${ST}/><path d="M78 46 L76 14 L56 30 Z" fill="#bdb3d6" ${ST}/>
+    <ellipse cx="50" cy="54" rx="31" ry="27" fill="#d8d0ec" ${ST}/>
+    <path d="M58 30 Q76 32 78 50 Q68 46 60 48 Z" fill="#8f84b0"/>
+    ${face(50,52)}
+    <path d="M47 60 L53 60 L50 63Z" fill="#ff7a9a"/><path d="M44 66 q3 3 6 0 q3 3 6 0" fill="none" ${ST}/>
+    <path d="M18 58 H32 M18 64 L32 62 M82 58 H68 M82 64 L68 62" stroke="${INK}" stroke-width="2" stroke-linecap="round"/>`,
+  ant: () => `
+    <path d="M38 30 Q30 10 22 12 M62 30 Q70 10 78 12" fill="none" ${ST}/>
+    <circle cx="22" cy="12" r="4" fill="#ff7a9a" ${ST}/><circle cx="78" cy="12" r="4" fill="#ff7a9a" ${ST}/>
+    <path d="M30 62 L14 54 M30 70 L14 76 M70 62 L86 54 M70 70 L86 76 M36 80 L26 94 M64 80 L74 94" ${ST}/>
+    <ellipse cx="50" cy="84" rx="16" ry="12" fill="#c86b6b" ${ST}/>
+    <ellipse cx="50" cy="66" rx="12" ry="9" fill="#d97d7d" ${ST}/>
+    <circle cx="50" cy="42" r="20" fill="#e89292" ${ST}/>
+    ${face(50,42,.8)}
+    <path d="M46 49 q4 3 8 0" fill="none" ${ST}/>`,
+  leek: () => `
+    <path d="M42 50 Q30 26 20 12 Q36 22 48 46Z" fill="#6fcf97" ${ST}/>
+    <path d="M58 50 Q70 26 80 12 Q64 22 52 46Z" fill="#6fcf97" ${ST}/>
+    <path d="M46 48 Q48 22 50 6 Q52 22 54 48Z" fill="#9ee6cf" ${ST}/>
+    <rect x="34" y="46" width="32" height="46" rx="14" fill="#f4fff6" ${ST}/>
+    <path d="M38 58 q4 -3 8 0 M54 58 q4 -3 8 0" fill="none" ${ST}/>
+    <path d="M42 62 q-2 8 0 10 q2 -2 0 -10Z" fill="#8fd3ff" stroke="${INK}" stroke-width="1.5"/>
+    <path d="M44 76 q6 -5 12 0" fill="none" ${ST}/>
+    <path d="M34 66 H66" stroke="#2b2550" stroke-width="2" stroke-dasharray="3 3"/>`
+};
+const KING = `
+  <path d="M22 116 Q22 72 60 70 Q98 72 98 116Z" fill="#ff7a7a" ${ST}/>
+  <path d="M60 72 L60 116" stroke="${INK}" stroke-width="3"/>
+  <path d="M48 84 h24" stroke="#ffd166" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="60" cy="54" r="26" fill="#ffe0c7" ${ST}/>
+  <path d="M36 60 Q38 84 60 86 Q82 84 84 60 Q74 72 60 70 Q46 72 36 60Z" fill="${INK}"/>
+  <path d="M50 70 q10 5 20 0" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M44 42 l10 4 M76 42 l-10 4" ${ST}/>
+  <circle cx="49" cy="52" r="3.5" fill="${INK}"/><circle cx="71" cy="52" r="3.5" fill="${INK}"/>
+  <ellipse cx="41" cy="60" rx="5" ry="3" fill="#ff8fa8" opacity=".7"/><ellipse cx="79" cy="60" rx="5" ry="3" fill="#ff8fa8" opacity=".7"/>
+  <rect x="38" y="24" width="44" height="8" rx="3" fill="${INK}"/>
+  <rect x="44" y="14" width="32" height="12" rx="4" fill="${INK}"/>
+  <text x="60" y="24" font-size="9" font-weight="900" fill="#ffd166" text-anchor="middle">王</text>
+  <path d="M28 28 h64" stroke="${INK}" stroke-width="5" stroke-linecap="round"/>
+  <path d="M30 30 v10 M90 30 v10" stroke="${INK}" stroke-width="2"/>
+  <circle cx="30" cy="42" r="3" fill="#ffd166" ${ST.replace('3"','2"')}/><circle cx="90" cy="42" r="3" fill="#ffd166" ${ST.replace('3"','2"')}/>
+  <rect x="84" y="80" width="22" height="28" rx="3" fill="#fff6d6" ${ST} transform="rotate(12 95 94)"/>
+  <path d="M88 88 h12 M88 94 h12 M88 100 h8" stroke="${INK}" stroke-width="2" transform="rotate(12 95 94)"/>`;
+
+// ===== 音效（第一次點擊後才初始化） =====
+function ac(){
+  if(!AC){ try{ AC = new (window.AudioContext||window.webkitAudioContext)({latencyHint:'playback'}); }catch(e){ return null; } }
+  if(AC.state === 'suspended') AC.resume();
+  return AC;
+}
+function beep(f, d=.08, type='triangle', v=.15, delay=0){
+  if(!soundOn) return; const a = ac(); if(!a) return;
+  const t = a.currentTime + delay, o = a.createOscillator(), g = a.createGain();
+  o.type = type; o.frequency.setValueAtTime(f, t);
+  g.gain.setValueAtTime(v, t); g.gain.exponentialRampToValueAtTime(.001, t + d);
+  o.connect(g).connect(a.destination); o.start(t); o.stop(t + d + .02);
+}
+let lastTick = 0;
+const sfx = {
+  click: () => beep(660,.06),
+  good: () => { beep(660,.1); beep(880,.12,'triangle',.15,.08); },
+  bad:  () => { beep(300,.12,'square',.06); beep(220,.16,'square',.06,.1); },
+  tick: () => { const n = performance.now(); if(n - lastTick > 70){ lastTick = n; beep(1200,.03,'square',.04); } },
+  win:  () => [523,659,784,1047].forEach((f,i)=>beep(f,.18,'triangle',.16,i*.1))
+};
+function drawSnd(){
+  $('snd').innerHTML = `<svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/>${soundOn
+    ? '<path d="M16 9q2 3 0 6M18.5 6.5q4 5.5 0 11" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>'
+    : '<path d="M16 9l5 6M21 9l-5 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/>'}</svg>`;
+}
+
+// ===== 畫面切換、功德條 =====
+function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on', s.id===id)); scrollTo(0,0); }
+function setMerit(m){
+  merit = Math.max(0, Math.min(100, m));
+  [0,1,2].forEach(i => { $('mNum'+i).textContent = merit; $('mBar'+i).style.transform = `scaleX(${Math.max(.03, merit/100)})`; });
+  $('verdict').textContent = verdictText(merit);
+}
+function floatText(txt, col){
+  const el = document.createElement('div'); el.className = 'float'; el.textContent = txt; el.style.color = col;
+  document.body.appendChild(el); setTimeout(()=>el.remove(), 1000);
+}
+
+// ===== 審判流程 =====
+function renderQ(){
+  const q = QS[qi];
+  $('dots').innerHTML = QS.map((_,i)=>`<b class="${i<=qi?'on':''}"></b>`).join('');
+  $('qText').textContent = `第 ${qi+1} 題｜${q.q}`;
+  $('qOpts').innerHTML = q.a.map((a,i)=>`<button class="opt" data-i="${i}">${a[0]}</button>`).join('');
+}
+$('qOpts').addEventListener('click', e => {
+  const b = e.target.closest('.opt'); if(!b) return;
+  const d = QS[qi].a[+b.dataset.i][1];
+  setMerit(merit + d);
+  if(d > 0){ sfx.good(); floatText(`功德 +${d}`, '#1f9e74'); }
+  else if(d < 0){ sfx.bad(); floatText(`功德 ${d}`, '#e0456b'); }
+  else { sfx.click(); floatText('功德 ±0', INK); }
+  qi++;
+  document.querySelectorAll('.opt').forEach(o=>o.disabled=true);
+  setTimeout(()=>{ if(qi < QS.length) renderQ(); else goWheel(); }, 650);
+});
+
+// ===== 輪迴轉盤 =====
+const SEG = 360 / OUT.length;
+function drawWheel(){
+  const r = 140, cx = 150, cy = 150;
+  let s = `<circle cx="150" cy="150" r="146" fill="${INK}"/>`;
+  OUT.forEach((o,i)=>{
+    const a0 = (i*SEG - 90) * Math.PI/180, a1 = ((i+1)*SEG - 90) * Math.PI/180;
+    s += `<path d="M${cx} ${cy} L${cx+r*Math.cos(a0)} ${cy+r*Math.sin(a0)} A${r} ${r} 0 0 1 ${cx+r*Math.cos(a1)} ${cy+r*Math.sin(a1)} Z" fill="${o.col}" stroke="${INK}" stroke-width="3"/>`;
+    const mid = i*SEG + SEG/2;
+    s += `<g transform="rotate(${mid} 150 150)"><svg x="122" y="28" width="56" height="56" viewBox="0 0 100 100">${ICON[o.k]()}</svg>
+          <text x="150" y="100" font-size="12" font-weight="800" fill="${INK}" text-anchor="middle">${o.s}</text></g>`;
+  });
+  for(let i=0;i<24;i++){ const a=i*15*Math.PI/180; s += `<circle cx="${150+143*Math.cos(a)}" cy="${150+143*Math.sin(a)}" r="2.5" fill="#ffd166"/>`; }
+  s += `<circle cx="150" cy="150" r="26" fill="#fff" stroke="${INK}" stroke-width="3"/>
+        <path d="M137 146 h26 l-3 12 q-10 5 -20 0z" fill="#c9b8ff" stroke="${INK}" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M144 140 q2 -4 0 -7 M152 140 q2 -4 0 -7" fill="none" stroke="${INK}" stroke-width="2" stroke-linecap="round"/>`;
+  $('wheel').innerHTML = s;
+}
+function drawOdds(){
+  const w = weights(merit);
+  $('odds').innerHTML = OUT.map((o,i)=>`<div><svg viewBox="0 0 100 100">${ICON[o.k]()}</svg>${o.s}<span>${(w[i]*100).toFixed(0)}%</span></div>`).join('');
+}
+function goWheel(){ setMerit(merit); drawOdds(); show('sWheel'); }
+
+function spin(){
+  if(spinning) return; spinning = true; $('spin').disabled = true; sfx.click();
+  const w = weights(merit); let r = Math.random(), idx = 0;
+  for(; idx < w.length-1; idx++){ r -= w[idx]; if(r <= 0) break; }
+  const center = idx*SEG + SEG/2 + (Math.random()-.5) * SEG * .7;
+  const start = rot, delta = ((-(center + start)) % 360 + 360) % 360;
+  const end = start + 360*5 + delta, dur = 4200, t0 = performance.now();
+  let lastSeg = Math.floor(start / SEG);
+  (function frame(now){
+    const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 4);
+    rot = start + (end - start) * e;
+    $('wheel').style.transform = `rotate(${rot}deg)`;
+    const sg = Math.floor(rot / SEG); if(sg !== lastSeg){ lastSeg = sg; sfx.tick(); }
+    if(p < 1) requestAnimationFrame(frame);
+    else { rot = rot % 360; $('wheel').style.transform = `rotate(${rot}deg)`; spinning = false; $('spin').disabled = false; showResult(idx); }
+  })(t0);
+}
+
+// ===== 結果視窗 =====
+function showResult(i){
+  const o = OUT[i];
+  $('rIcon').innerHTML = ICON[o.k]();
+  $('rName').textContent = o.name;
+  $('rDesc').textContent = o.desc;
+  $('mask').classList.add('on'); document.body.classList.add('lock');
+  sfx.win();
+  const m = $('modal'); const cols = ['#ffd166','#ff7a9a','#9ee6cf','#c9b8ff','#8fd3ff'];
+  for(let k=0;k<18;k++){
+    const s = document.createElement('div'); s.className = 'spark';
+    s.innerHTML = `<svg viewBox="0 0 10 10"><path d="M5 0 L6.2 3.8 L10 5 L6.2 6.2 L5 10 L3.8 6.2 L0 5 L3.8 3.8Z" fill="${cols[k%5]}"/></svg>`;
+    s.style.left = '50%'; s.style.top = '90px';
+    s.style.setProperty('--dx', (Math.random()*260-130)+'px'); s.style.setProperty('--dy', (Math.random()*200-120)+'px');
+    m.appendChild(s); setTimeout(()=>s.remove(), 1300);
+  }
+}
+function closeResult(){ $('mask').classList.remove('on'); document.body.classList.remove('lock'); }
+
+// ===== 事件 =====
+function startJudge(){ qi = 0; setMerit(50); renderQ(); show('sQuiz'); }
+$('goJudge').addEventListener('click', ()=>{ sfx.click(); startJudge(); });
+$('goSkip').addEventListener('click', ()=>{ sfx.click(); setMerit(50); goWheel(); });
+$('spin').addEventListener('click', spin);
+$('again').addEventListener('click', ()=>{ sfx.click(); startJudge(); });
+$('close').addEventListener('click', closeResult);
+$('mask').addEventListener('click', e=>{ if(e.target.id==='mask') closeResult(); });
+$('rAgain').addEventListener('click', ()=>{ closeResult(); setTimeout(spin, 250); });
+$('snd').addEventListener('click', ()=>{ soundOn = !soundOn; try{ localStorage.setItem('tt_snd', soundOn?'1':'0'); }catch(e){} drawSnd(); if(soundOn) sfx.click(); });
+const SAYS = ['本王看你今天盯盤盯到臉都綠了。<br>來，先算算這輩子的功德，<br>再決定你下輩子投胎去哪！','別戳了，生死簿要掉了！','綠油油的台股，本王也看得很心酸。','功德不夠？從讓座開始存！'];
+let sayI = 0;
+$('king').addEventListener('click', ()=>{
+  const k = $('king'); k.classList.remove('poke'); void k.offsetWidth; k.classList.add('poke');
+  sayI = (sayI + 1) % SAYS.length; $('kingSay').innerHTML = SAYS[sayI]; beep(500,.08); beep(750,.1,'triangle',.12,.07);
+});
+document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='visible') document.getAnimations().forEach(a=>{ try{a.play()}catch(e){} }); });
+
+// ===== 版本比較、自動更新 =====
+function cmpV(a,b){ const x=String(a).split('.').map(Number), y=String(b).split('.').map(Number);
+  for(let i=0;i<3;i++){ const p=x[i]||0, q=y[i]||0; if(p!==q) return p>q?1:-1; } return 0; }
+function busy(){ return spinning || $('mask').classList.contains('on') || $('clMask').classList.contains('on') || $('sQuiz').classList.contains('on'); }
+function applyUpdate(){
+  if(!pendingUpdate) return;
+  if(booted && busy()){ setTimeout(applyUpdate, 2000); return; }
+  location.replace(location.pathname + '?v=' + pendingUpdate);
+}
+async function checkUpdate(){
+  if(!/github\.io$/.test(location.hostname)) return;
+  try{
+    const r = await fetch('version.json?t=' + Date.now(), {cache:'no-store'});
+    const j = await r.json();
+    if(j && j.version && cmpV(j.version, APP_VERSION) > 0){ pendingUpdate = j.version; if(booted) applyUpdate(); }
+  }catch(e){}
+}
+document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='visible') checkUpdate(); });
+window.addEventListener('pageshow', e=>{ if(e.persisted) checkUpdate(); });
+if(location.search.includes('v=')) history.replaceState(null, '', location.pathname);
+
+// ===== 更新說明（看過的版本只往前記） =====
+function getSeen(){ try{ return localStorage.getItem('tt_seen'); }catch(e){ return null; } }
+function markSeen(){ try{ const s=getSeen(); if(!s || cmpV(APP_VERSION, s) > 0) localStorage.setItem('tt_seen', APP_VERSION); }catch(e){} }
+function maybeChangelog(){
+  const seen = getSeen();
+  if(!seen){ markSeen(); return; }            // 第一次用的人不跳
+  if(cmpV(APP_VERSION, seen) <= 0) return;
+  $('clBody').innerHTML = CHANGELOG.filter(c=>cmpV(c.v, seen) > 0)
+    .map(c=>`<b>v${c.v}（${c.d}）</b><ul>${c.items.map(t=>`<li>${t}</li>`).join('')}</ul>`).join('');
+  $('clMask').classList.add('on'); document.body.classList.add('lock');
+}
+function closeCl(){ $('clMask').classList.remove('on'); document.body.classList.remove('lock'); markSeen(); }
+$('clX').addEventListener('click', closeCl); $('clOk').addEventListener('click', closeCl);
+$('clMask').addEventListener('click', e=>{ if(e.target.id==='clMask') closeCl(); });
+
+// ===== 開機畫面 =====
+function bootRun(){
+  $('bootKing').innerHTML = KING;
+  setTimeout(()=>$('boot').classList.add('go'), 150);
+  const fontP = Promise.race([document.fonts ? document.fonts.ready : Promise.resolve(), new Promise(r=>setTimeout(r,1200))]);
+  const minP = new Promise(r=>setTimeout(r, 2400));
+  let done = false; const finish = ()=>{ if(done) return; done = true; bootEnd(); };
+  Promise.all([fontP, minP]).then(finish); setTimeout(finish, 4000);
+  checkUpdate();
+}
+function bootEnd(){
+  if(pendingUpdate){ applyUpdate(); return; }   // 開機中發現新版：直接換，不讓使用者看兩次開機
+  const bk = $('bootKing'), k = $('king');
+  const r0 = bk.getBoundingClientRect(), r1 = k.getBoundingClientRect();
+  const dx = (r1.left + r1.width/2) - (r0.left + r0.width/2), dy = (r1.top + r1.height/2) - (r0.top + r0.height/2), sc = r1.width / r0.width;
+  $('boot').classList.add('out');
+  bk.style.animation = 'none'; bk.style.opacity = '1';
+  bk.style.transition = 'transform .7s cubic-bezier(.5,0,.2,1)';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ bk.style.transform = `translate(${dx}px,${dy}px) scale(${sc})`; }));
+  $('bootBg').style.opacity = '0';
+  document.body.classList.remove('booting');
+  setTimeout(()=>{
+    k.style.visibility = 'visible'; $('boot').remove(); $('bootBg').remove(); booted = true;
+    setTimeout(maybeChangelog, 300);
+  }, 740);
+}
+
+// ===== 初始化 =====
+(function init(){
+  let st = '';
+  for(let i=0;i<40;i++) st += `<circle cx="${Math.random()*100}%" cy="${Math.random()*100}%" r="${Math.random()*1.6+.5}" fill="#fff" opacity=".8" style="animation-delay:${(Math.random()*3).toFixed(2)}s"/>`;
+  $('stars').innerHTML = st;
+  $('king').innerHTML = KING;
+  drawSnd(); drawWheel(); setMerit(50);
+  bootRun();
+})();
+</script>
+</body>
+</html>
